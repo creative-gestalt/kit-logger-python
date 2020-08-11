@@ -123,12 +123,10 @@ def send_drop_off(location_id, member, group, user_id, api_token):
     """Sends `POST` api request to LogDropOffKit service
        :returns success, error
     """
-    sanitized_member = member.strip()
-    sanitized_group = group.strip()
     params = {
         'LocationId': location_id,
-        'MemberNumber': sanitized_member,
-        'GroupNumber': sanitized_group,
+        'MemberNumber': sanitize(member),
+        'GroupNumber': sanitize(group),
         'Authentication': {
             'ApiToken': api_token,
             'UserId': user_id
@@ -141,3 +139,10 @@ def send_drop_off(location_id, member, group, user_id, api_token):
     if not success:
         print(error)
     return success, error
+
+
+def sanitize(string):
+    if str(string).__contains__('\n'):
+        return string.strip()
+    else:
+        return str(string)

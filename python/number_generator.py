@@ -1,8 +1,8 @@
-from . import logger
-import os
+from python import logger
 from pathlib import Path
-from halo import Halo
+import os
 
+print = logger.print_and_log
 start_num = None
 end_num = None
 
