@@ -2,10 +2,12 @@ from python.sc_http import SCHTTP
 from python.sc_api import SCAPI
 from bs4 import BeautifulSoup
 import urllib.parse as parse
+from python import logger
 import json
 
 api = SCAPI()
 http = SCHTTP()
+print = logger.print_and_log
 
 
 def get_authenticated(self):

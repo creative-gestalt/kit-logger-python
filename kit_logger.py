@@ -1,5 +1,8 @@
 from python import kt_helpers as kt
+from python import logger
 import time
+
+print = logger.print_and_log
 
 
 class KitLogger:
