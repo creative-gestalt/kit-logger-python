@@ -1,0 +1,5 @@
+python-telegram-bot == 12.4.2
+pip~=19.2.3
+cryptography~=2.9.2
+urllib3~=1.25.9
+telegram

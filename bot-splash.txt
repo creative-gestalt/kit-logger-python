@@ -1,0 +1,13 @@
+this bot is used for logging kits. A few things to note:
+
+(1)  The logger is centralized to one machine, contact @creativegestalt if something goes wrong.
+(2)  Certain failures will be logged, but not sent to you.
+(3)  If your logged kits is less than your selection, you ran out of member numbers during the session.
+(4)  If you never receive results contact @creativegestalt
+
+Commands:
+/start
+/qstart - skip this message.
+/stop
+
+First tell me what state you want to log.
