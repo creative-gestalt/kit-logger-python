@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  kit-logger:
-    container_name: kit-logger
+  kl-p:
+    container_name: kl-p
     build: .
     volumes:
       - './data/:/usr/src/kit-logger-python/data/'
