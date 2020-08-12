@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  kit-logger:
+    container_name: kit-logger
+    build: .
+    volumes:
+      - './data/:/usr/src/kit-logger-python/data/'
+      - './states/:/usr/src/kit-logger-python/states'
+      - './user_data/:/usr/src/kit-logger-python/user_data/'
+      - './user_member_numbers/:/usr/src/kit-logger-python/user_member_numbers/'
+    tty: true
+    stdin_open: true

@@ -1,8 +1,8 @@
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, ConversationHandler)
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
 from python import functions, number_generator, keyboards
 from telegram import ReplyKeyboardMarkup, ChatAction
 from kit_logger import KitLogger
-from python import wraps
+from python import wraps, logger
 from python import globals as g
 from pathlib import Path
 import configparser
@@ -10,6 +10,7 @@ import datetime
 import csv
 import os
 
+print = logger.print_and_log
 config = configparser.ConfigParser()
 config.read('config.ini')
 send_busy_reply = wraps.busy_reply(g.user)
@@ -32,7 +33,6 @@ def start(update, context):
     context.bot.send_message(chat_id=68162307, text='{} started a run.'.format(g.user))
     update.message.reply_text('{}, %s'.format(
         update.message.from_user.first_name) % bot_splash, reply_markup=keyboards.state_keyboard)
-
     return STATE  # <-- this is what will receive the next user input
 
 
