@@ -43,7 +43,7 @@ class KitLogger:
         self.send_drop_off(location_ids)
 
     def send_drop_off(self, location_ids):
-        """Uses location_ids length to loop through user chose iterations
+        """Uses location_ids length to loop through user chosen iterations
            Uses 10 member numbers per location
            Saves location_data to a txt file to send to the user in the telegram_bot.py file
            Catches exception if there are no location_ids

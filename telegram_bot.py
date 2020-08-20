@@ -101,7 +101,7 @@ def get_zip_code(update, context):
 
 @send_typing_action
 def generate_new_numbers(update, context):
-    """Generates `member numbers` if user runs out or if user requests them"""
+    """Asks user if they want to generate new member numbers"""
     g.kit_count = int(update.message.text)
     update.message.reply_text('Generate new numbers?', reply_markup=keyboards.generate_keyboard)
     return KIT_COUNT
@@ -164,22 +164,31 @@ def get_group(update, context):
        Requests `box range` from user
     """
     g.group_number = update.message.text
-    with open('user_data/users.csv', 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([g.user, g.email, g.password, g.group_number])
+    with open('user_data/users.csv', 'r') as file:
+        reader = csv.reader(file)
+        users = []
+        for row in reader:
+            users.append(row[0])
+        if g.user not in users:
+            with open('user_data/users.csv', 'a', newline='') as nf:
+                writer = csv.writer(nf)
+                writer.writerow([g.user, g.email, g.password, g.group_number])
     update.message.reply_text('Send box range.\nExample:\n\n50015000-50015099')
     return GENERATE
 
 
 @send_typing_action
 def generate_numbers(update, context):
-    """Generates number range from user input"""
+    """Generates `member numbers` from user input"""
     numbers = update.message.text
     print(numbers)
     (first_number, second_number) = numbers.split('-')
     if len(first_number) != len(second_number):
         update.message.reply_text('You may have entered extra digits, please send them again.')
-        return GROUP
+        if second_number - first_number > 100:
+            update.message.reply_text('You may have entered incorrect numbers, please send them again.')
+            return GENERATE
+        return GENERATE
     g.member_numbers = number_generator.generate_card_numbers(g.user, first_number, second_number)
     update.message.reply_text('Member numbers were generated', reply_markup=keyboards.log_button)
     return LOG
